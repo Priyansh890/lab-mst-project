@@ -1,0 +1,123 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap");
+
+:root {
+  --ink: #0d0d0d;
+  --paper: #f5f1eb;
+  --cream: #ede8df;
+  --accent: #c84b2f;
+  --muted: #8a8278;
+  --border: #d4cfc6;
+  --card-bg: #faf8f4;
+  --shadow: 0 2px 12px rgba(13,13,13,0.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "DM Mono", monospace;
+  background: var(--paper);
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+/* ── Header ── */
+.app-header {
+  background: var(--ink);
+  padding: 24px 40px;
+  border-bottom: 3px solid var(--accent);
+}
+.header-inner { display: flex; align-items: center; gap: 16px; max-width: 760px; margin: 0 auto; }
+.logo-mark {
+  width: 38px; height: 38px;
+  background: var(--accent);
+  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+  flex-shrink: 0;
+}
+.app-title {
+  font-family: "DM Serif Display", serif;
+  font-size: 1.9rem;
+  color: var(--paper);
+  letter-spacing: -0.5px;
+}
+.app-subtitle { font-size: 0.68rem; color: var(--muted); letter-spacing: 0.08em; margin-top: 2px; }
+
+/* ── Main ── */
+.app-main { max-width: 760px; margin: 48px auto; padding: 0 24px 80px; }
+
+/* ── Section ── */
+.section-header {
+  display: flex; align-items: baseline; justify-content: space-between;
+  border-bottom: 2px solid var(--ink); padding-bottom: 10px; margin-bottom: 28px;
+}
+.section-title {
+  font-family: "DM Serif Display", serif;
+  font-size: 2rem; font-style: italic; letter-spacing: -0.5px;
+}
+.badge {
+  font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em;
+  background: var(--accent); color: #fff;
+  padding: 3px 10px; border-radius: 2px;
+}
+
+/* ── User List ── */
+.user-list { list-style: none; display: flex; flex-direction: column; gap: 1px; }
+
+.user-card {
+  display: flex; align-items: center; gap: 16px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-left: 3px solid transparent;
+  padding: 16px 20px;
+  cursor: default;
+  opacity: 0;
+  animation: slideIn 0.35s ease forwards;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.user-card:hover {
+  border-left-color: var(--accent);
+  box-shadow: var(--shadow);
+  transform: translateX(3px);
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.avatar {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: var(--ink); color: var(--paper);
+  font-family: "DM Serif Display", serif;
+  font-size: 1.1rem; font-style: italic;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.user-info { flex: 1; min-width: 0; }
+.user-name  { font-weight: 500; font-size: 0.92rem; letter-spacing: -0.2px; }
+.user-email {
+  display: block; font-size: 0.76rem; color: var(--muted);
+  text-decoration: none; margin-top: 2px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  transition: color 0.15s;
+}
+.user-email:hover { color: var(--accent); }
+.user-id { font-size: 0.68rem; color: var(--border); letter-spacing: 0.05em; }
+
+/* ── States ── */
+.state-container {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 16px; padding: 80px 0; color: var(--muted);
+}
+.state-text { font-size: 0.8rem; letter-spacing: 0.08em; }
+
+.spinner {
+  width: 32px; height: 32px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.error-icon { font-size: 2rem; color: var(--accent); }
+.state-container.error .state-text { color: var(--accent); }
